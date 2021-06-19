@@ -1,0 +1,72 @@
+{% extends "base.html.twig" %}
+{% block title %}MMI Space - Les Diplomés{% endblock %}
+
+{% block body %}
+    <header class="header">
+        <h1 class="header__title">Les diplômés</h1>
+        <p class="header__subtitle">Cette page regroupe tous les titulaires du DUT MMI de Limoges.</p>
+        <img src="{{ asset('data/img/others/diplomes.png') }}" alt="diplomes" class="header__image">
+    </header>
+
+    <section class="main">
+        <div class="main__search-container">
+            <button class="main__button filter-button">
+                <img src="{{ asset('data/svg/filter.svg') }}" alt="filter" class="main__button__image">
+                Filtres
+            </button>
+            {{ form_start(form,{attr:{'class':'main__search-form-container'}}) }}
+                <div class="main__search">
+                    <label for="submit">
+                        <img src="{{ asset('data/svg/search.svg') }}" alt="search" class="main__search__image">
+                    </label>
+                    <input type="submit" style="display: none" id="submit">
+                    {{ form_widget(form.q,{'attr' : { 'placeholder' : 'Un étudiant', 'class' : 'main__search__input' } }) }}
+                </div>
+                <div class="main__popup filter-popup invisible">
+                    <div class="main__popup__form">
+                        <div class="main__popup__form__grid">
+                            {{ form_widget(form.bac,{'attr' : {'class' : 'main__popup__form__select' } })  }}
+                            {{ form_widget(form.fieldStudy,{'attr' : { 'class' : 'main__popup__form__select' }})  }}
+                            {{ form_widget(form.fieldActivity,{'attr' : { 'class' : 'main__popup__form__select' }})  }}
+                            {{ form_widget(form.promo,{'attr': { 'placeholder' : 'Promo 2019', 'class' : 'main__popup__form__select' }}) }}
+                        </div>
+                        <input type="submit" value="Rechercher" class="main__popup__form__button" id="submit">
+                    </div>
+                </div>
+            {{ form_end(form) }}
+        </div>
+        <h3 class="main__title">{{ nListe }} diplômés listés</h3>
+        {% if graduates != null %}
+            <ul class="main__grid">
+                {% for graduate in graduates %}
+                    {% if graduate.firstName != null and graduate.lastName != null %}
+                        <li class="student-card">
+                            <a href="{{ path('graduate.show', {id: graduate.id, slug: graduate.slug}) }}" class="student-card__link">
+                                <div class="student-card__image-container">
+                                    <img src="{% if graduate.imageName != null %}{{ asset('data/img/user/' ~ graduate.imageName) }} {% else %} {{ asset('data/img/others/user.png') }} {% endif %}" alt="etudiant" class="student-card__image">
+                                </div>
+                                <div class="student-card__content">
+                                    <h3 class="student-card__content__name">{{ graduate.firstName }}  {{ graduate.lastName |capitalize }}</h3>
+                                    <p class="student-card__content__period">{{ graduate.promo }} - {% if graduate.promo < 2021 %}{{ graduate.promo+2 }}{% else %}{{ graduate.promo+3 }}{% endif %}</p>
+                                </div>
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+
+            {{ knp_pagination_render(graduates) }}
+        {% endif %}
+
+    </section>
+
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        document.querySelector(".filter-button").addEventListener("click", () => {
+            document.querySelector(".filter-popup").classList.toggle("invisible");
+        });
+    </script>
+{% endblock %}

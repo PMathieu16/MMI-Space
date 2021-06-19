@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+{% block title %}MMI Space - Les Diplomés{% endblock %}
+
+{% block body %}
+    <header class="header">
+        <h1 class="header__title">Les entreprises</h1>
+        <p class="header__subtitle">La liste des entreprises qui emploient des anciens MMI.</p>
+        <img src="{{ asset('data/img/others/diplomes.png') }}" alt="diplomes" class="header__image">
+    </header>
+
+    <section class="main">
+        <ul class="main__list">
+            {% for company in companies %}
+                <li class="main__list__item">
+                    <p>{{ company.company }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html.twig" %}
+{% block title %}MMI Space - L'équipe pédagogique{% endblock %}
+
+{% block body %}
+    <header class="header">
+        <h1 class="header__title">L'équipe</h1>
+        <p class="header__subtitle">L’équipe pédagogique est à votre service si vous voulez prendre contact avec elle.</p>
+        <img src="{{ asset("data/img/others/equipe.png") }}" alt="team" class="header__image">
+    </header>
+
+    <section class="main">
+        {% if teamMembers != null %}
+            <ul class="main__list">
+                {% for teamMember in teamMembers %}
+                    <li class="teacher">
+                        <img src="{% if teamMember.imageName != null %} {{ asset('data/img/user/' ~ teamMember.imageName) }} {% else %} {{ asset('data/img/others/user.png') }} {% endif %}" alt="teacher" class="teacher__image">
+                        <div class="teacher__content">
+                            <h3 class="teacher__content__name">{{teamMember.firstName}} {{teamMember.lastName}}</h3>
+                            <p class="teacher__content__infos">{{teamMember.status}}</p>
+                            <p class="teacher__content__infos">{{teamMember.profession}}</p>
+                            <p class="teacher__content__infos">{{teamMember.promo}}</p>
+                            <p class="teacher__content__description">{{teamMember.description}}</p>
+                            <p class="teacher__content__mail">{{teamMember.email}}</p>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </section>
+{% endblock %}

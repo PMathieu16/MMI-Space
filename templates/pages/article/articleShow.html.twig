@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <header class="news-header">
+        <img src="{{ asset('data/img/others/actu.png') }}" alt="actu" class="news-header__image">
+        <div class="news-header__content">
+            <h2 class="news-header__content__title">{{ article.title }}</h2>
+            <p class="news-header__content__author">par {{ article.author }}</p>
+            <p class="news-header__content__date">{{ article.createdAt | date("d/m/Y")}}</p>
+            <a href="{{ path('article.list') }}" class="news-header__back-button">
+                <img src="{{ asset('data/svg/arrow-white.svg') }}" alt="arrow" class="news-header__back-button__arrow">
+            </a>
+        </div>
+    </header>
+
+    <section class="news-content">
+        <div class="news-content__paragraph">
+            {{ article.content | raw }}
+        </div>
+    </section>
+
+{% endblock %}

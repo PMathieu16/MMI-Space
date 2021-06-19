@@ -1,0 +1,107 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+{% block title %}Bienvenue sur la page d'administration de MMI Space{% endblock %}
+
+{% block page_content %}
+    <style>
+        h2 {
+            font-family: sans-serif;
+            font-weight: bold;
+            margin: 1rem 0 0 0;
+        }
+
+        h3, h4 {
+            font-family: sans-serif;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #FFF;
+            box-shadow: 0 0 .5rem rgba(0, 0, 0, .3);
+            border-radius: .5rem;
+            width: 100%;
+            max-width: 64rem;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .inside-container {
+            width: 100%;
+            position: relative;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e7e7e7;
+        }
+
+        .inside-container h3 {
+            position: absolute;
+            top: 1.2rem;
+            left: 0;
+        }
+
+        .inside-container h2 {
+            margin: 0;
+            text-align: right;
+        }
+
+    </style>
+
+    <div class="container">
+        <h4>Nombre d'utilisateurs inscrits sur le site</h4>
+        <h2>{{ count }}</h2>
+    </div>
+
+
+
+    <div class="container" id="bac">
+        <h4>Baccalauréat d'origine</h4>
+        {% for b in bac %}
+            <div class="inside-container">
+                <h3>{{ b.name }}</h3>
+                <h2>{{ b.count }}</h2>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="container">
+        <h4>Année d'obtention du DUT/BUT</h4>
+        {% for p in promo %}
+            <div class="inside-container">
+                <h3>{% if p.name < 2021 %}{{ p.name + 2}}{% else %}{{ p.name +3 }}{% endif %}</h3>
+                <h2>{{ p.count }}</h2>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="container">
+        <h4>Le plus haut diplôme</h4>
+        {% for d in degree %}
+            <div class="inside-container">
+                <h3>{{ d.name }}</h3>
+                <h2>{{ d.count }}</h2>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="container">
+        <h4>Situation actuelle</h4>
+        {% for c in curStatus %}
+        <div class="inside-container">
+            <h3>{{ c.name }}</h3>
+            <h2>{{ c.count }}</h2>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="container">
+        <h4>Salaire net par mois</h4>
+        {% for s in salary %}
+            <div class="inside-container">
+                <h3>{{ s.name }}</h3>
+                <h2>{{ s.count }}</h2>
+            </div>
+        {% endfor %}
+    </div>
+
+
+{% endblock page_content %}

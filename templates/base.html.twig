@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}MMI Space{% endblock %}</title>
+        {# Run `composer require symfony/webpack-encore-bundle`
+               and uncomment the following Encore helpers to start using Symfony UX #}
+        <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    	<link rel="shortcut icon" type="image/png" href="{{ asset('data/img/others/accueil.png') }}">
+        {% block stylesheets %}
+        {% endblock %}
+    </head>
+    <body>
+
+        <div class="menu">
+            <a href="{{ path('article.list') }}" class="menu__element">Les Actus</a>
+            <a href="{{ path('offer.list') }}" class="menu__element">Offres d'emploi</a>
+            <a href="{{ path('graduate.list') }}" class="menu__element">Les diplômés</a>
+            <a href="{{ path('teamMember.list') }}" class="menu__element">L'équipe pédagogique</a>
+            <a href="{{ path('company') }}" class="menu__element">Les entreprises</a>
+            {%  if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('admin') }}" class="menu__element">Administration</a>
+            {% endif %}
+        </div>
+
+        <nav class="nav">
+            <img src="{{ asset('data/img/others/accueil.png') }}" alt="logo" class="nav__logo">
+            <div class="nav__menu">
+                <img src="{{ asset('data/svg/menu-icon.svg') }}" alt="menu-icon" class="nav__menu__icon">
+            </div>
+            <a href="{{ path('profil') }}" class="nav__user">
+                <img src="{% if app.user.imageName != null %} {{ asset('data/img/user/' ~ app.user.imageName) }} {% else %} {{ asset('data/img/others/user.png') }} {% endif %}" alt="user" class="nav__user__image">
+                <span class="nav__user__indicator"></span>
+            </a>
+        </nav>
+
+        {% block body %}{% endblock %}
+
+        <div class="up invisible">
+            <img src="{{ asset("data/svg/arrow-white.svg") }}" alt="arrow" class="up__image">
+        </div>
+
+        <footer class="footer">
+            <p class="footer__text">MMI Space - 2021 - Made by <a href="https://www.laura-chauvet.com/" target="_blank" class="footer__link">Laura Chauvet</a>, <a href="https://colin-lienard.fr/" target="_blank" class="footer__link">Colin Lienard</a>, <a href="https://mathieu-parinet.fr/" target="_blank" class="footer__link">Mathieu Parinet</a>, <a href="https://www.leapeschieras.com/" target="_blank" class="footer__link">Léa Peschieras</a></p>
+        </footer>
+
+        <script src="{{ asset('js/app.js') }}"></script>
+        {% block javascripts %}
+
+        {% endblock %}
+    </body>
+</html>

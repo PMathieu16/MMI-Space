@@ -1,0 +1,61 @@
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MMI Space - Accueil</title>
+    <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
+    <link rel="stylesheet" href="{{ asset("css/style.css") }}">
+    <link rel="shortcut icon" type="image/png" href="{{ asset('data/img/others/accueil.png') }}">
+</head>
+<body>
+    
+    <nav class="nav home-nav">
+        <img src="{{  asset('data/img/others/accueil.png') }}" alt="logo" class="nav__logo">
+        <a href="{{ path('app_login') }}" class="nav__back-button">
+            <img src="{{ asset("data/svg/dude.svg") }}" alt="dude" class="nav__back-button__dude">
+            Se connecter
+        </a>
+    </nav>
+
+    <div class="home-background"></div>
+
+    <header class="home-header">
+        <h1 class="home-header__title">MMI Space</h1>
+        <p class="home-header__subtitle">L’annuaire des MMI de Limoges.<br>Vous êtes un professeur ou un ancien MMI ?</p>
+        <a href="{{ path('app_login') }}" class="home-header__link">Connectez-vous ici.</a>
+        <img src="{{ asset("data/img/others/accueil.png") }}" alt="accueil" class="home-header__image">
+        <button class="home-header__button">C'est quoi MMI ?</button>
+    </header>
+
+    <section class="home-main">
+        <img src="{{ asset("data/svg/wave.svg") }}" alt="wave" class="home-main__wave">
+        <h2 class="home-main__title">MMI à<br><span class="home-main__title__underlined">Limoges</span></h2>
+        <p class="home-main__subtitle">Design, communication, motion design, développement web...Apprenez les métiers du web dans le meilleur des cadres !</p>
+        <img src="{{ asset("data/img/others/batiment.png") }}" alt="batiment" class="home-main__image">
+        <div class="home-main__content">
+            <h3 class="home-main__content__title">Le BUT MMI</h3>
+            <p class="home-main__content__paragraph">Le BUT MMI (Métiers du Multimédia et de l’Internet) est un diplôme obtenu au bout de 3 ans d’études. Il est très polyvalent puisque les étudiants qui obtiennent ce diplôme sont de véritables couteaux suisses. En effet, il permet d’acquérir des compétences dans de nombreux domaines, que ce soit en communication, en infographie, en développement web, en audiovisuel, en gestion de projet ou encore en marketing.
+                <br><br>
+                Le formation est composée de plusieurs types d’enseignements, il y a des cours magistraux en classe entière, des travaux dirigés en demi-groupe et au moins 50% de travaux pratiques avec 13 étudiants par TP. Le BUT MMI est accessible directement après le bac et forme les étudiants aux métiers liés à la création numérique (UX/UI designer, motion designer).</p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p class="footer__text">MMI Space - 2021 - Made by <a href="https://www.laura-chauvet.com/" target="_blank" class="footer__link">Laura Chauvet</a>, <a href="https://colin-lienard.fr/" target="_blank" class="footer__link">Colin Lienard</a>, <a href="https://mathieu-parinet.fr/" target="_blank" class="footer__link">Mathieu Parinet</a>, <a href="https://www.leapeschieras.com/" target="_blank" class="footer__link">Léa Peschieras</a></p>
+    </footer>
+
+    <script>
+
+        document.querySelector(".home-header__button").addEventListener("click", () => {
+            window.scrollTo({
+                top: 250,
+                left: 0,
+                behavior: 'smooth'
+            });
+        });
+
+    </script>
+
+</body>
+</html>
